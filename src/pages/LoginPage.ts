@@ -17,7 +17,7 @@ export class LoginPage extends BasePage{
         this.password=page.getByRole('textbox',{name:'Password'});
         this.loginBtn=page.getByRole('button',{name:'Login'});
         this.logo=page.getByText('Swag Labs', { exact: true });
-        this.loginErrorMessage=page.getByRole('heading', { name: 'Epic sadface: Sorry, this user has been locked out.', level: 3 });
+        this.loginErrorMessage=page.locator('[data-test="error"]');
     };
 
 
@@ -38,8 +38,12 @@ export class LoginPage extends BasePage{
         await this.loginBtn.click();
     }
 
-    async isInvalidLoginErrorDisplayed():Promise<boolean>{
-   return await this.loginErrorMessage.isVisible();
-}
+     async isInvalidLoginErrorDisplayed():Promise<boolean>{
+     return await this.loginErrorMessage.isVisible();
+   }
+
+    async isInvalidLoginErrorDisplayedMessage():Promise<string|null>{
+     return await this.loginErrorMessage.textContent();
+   }
 };
 
