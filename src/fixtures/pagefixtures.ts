@@ -5,7 +5,9 @@ import{test as baseTest}from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage'; 
 import { HomePage } from '../pages/HomePage'; 
 import { BasePage } from '../pages/BasePage';
-
+import { CsvHelper } from '../utils/CsvHelper';
+import { ExcelHelper } from '../utils/ExcelHelper';
+import { JsonHelper } from '../utils/JsonHelper';
 
 //define types for page fixtures:
 type pageFixtures={
@@ -34,6 +36,11 @@ type pageFixtures={
     homePage:async({page},use)=>{ 
     let homePage=new HomePage(page);
     await use(homePage);
+},
+
+testData:async({},use)=>{
+    let testData=CsvHelper.readCsv('src/data/loginData.csv');
+    await use(testData);
 },
 
 });

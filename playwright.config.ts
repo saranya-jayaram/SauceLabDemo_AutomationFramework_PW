@@ -1,4 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+
+//ENV=qa npx playwright test runs on QA enviroment 
+const ENV = process.env.ENV || "qa";//specify the environment name
+console.log('Running tests on Environment: ', ENV);
+dotenv.config({ path: `config/.env.${ENV}` });
 
 
 export default defineConfig({
@@ -23,7 +29,7 @@ export default defineConfig({
   
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'https://www.saucedemo.com/',
+    baseURL: process.env.Base_URL,
     trace: 'on-first-retry',
     screenshot:'only-on-failure',
     video:'retain-on-failure',
