@@ -44,4 +44,5 @@ test('verify product link is visible and clickable', async ({ productPage }) => 
      await productPage.navigateToProductInfoPage("Sauce Labs Backpack");
 });
 
+
     

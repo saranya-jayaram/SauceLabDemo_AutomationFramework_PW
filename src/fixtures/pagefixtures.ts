@@ -10,6 +10,7 @@ import { CsvHelper } from '../utils/CsvHelper';
 import { ExcelHelper } from '../utils/ExcelHelper';
 import { JsonHelper } from '../utils/JsonHelper';
 import { ProductInfoPage } from '../pages/ProductInfoPage';
+import { CartPage } from '../pages/CartPage';
 
 //define types for page fixtures:
 type pageFixtures={
@@ -18,6 +19,7 @@ type pageFixtures={
     homePage:HomePage,
     productPage:ProductPage,
     productInfoPage: ProductInfoPage,
+    cartPage:CartPage,
    testData:Record<string,string>[]
 };
 
@@ -52,12 +54,15 @@ type pageFixtures={
         await use(productInfoPage);
     },
 
-
+    cartPage : async({ page }, use)=>{
+        let cartPage=new CartPage(page);
+        await use(cartPage);
+    },
+    
 testData:async({},use)=>{
     let testData=CsvHelper.readCsv('src/data/loginData.csv');
     await use(testData);
 },
-
 });
 
 export{expect}from '@playwright/test';
