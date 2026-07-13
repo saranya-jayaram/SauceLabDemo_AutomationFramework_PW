@@ -14,6 +14,6 @@ test('verify product added and checkout', async ({ basePage,cartPage ,productInf
    await productInfoPage.productInfoPageAddToCart("Sauce Labs Backpack");
    await basePage.clickCartIcon();
    await cartPage.cartPageDetailsValidation();
-   expect (await cartPage.cartPageDetailsValidation()).to
+   expect (await cartPage.checkOutYourInfo()).toContain('Checkout: Your Information');
  });
  

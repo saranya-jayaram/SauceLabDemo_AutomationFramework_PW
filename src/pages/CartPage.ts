@@ -10,7 +10,7 @@ export class CartPage extends BasePage {
     private readonly cartprice:Locator;
     private readonly continueshopping:Locator;
     private readonly checkout:Locator;
-    
+    private readonly checkoutyourinfo:Locator;
 
     //const... of the class: init the locators
     constructor(page: Page) {
@@ -21,12 +21,17 @@ export class CartPage extends BasePage {
         this.cartprice=page.locator('[data-test="inventory-item-price"]');
         this.continueshopping=page.locator('[data-test="continue-shopping"]');
         this.checkout=page.locator('[data-test="checkout"]');
+        this.checkoutyourinfo=page.locator('[data-test="title"]');
     }
 
     async cartPageDetailsValidation():Promise<void>{
-    //const cartpagetitle=this.page.locator('[data-test="inventory-item"]',{has:this.page.getByText(title)}); 
-     await this.checkout.click();
+      await this.checkout.click();
     }
+
+    async checkOutYourInfo():Promise<string>{
+        return this.checkoutyourinfo.innerText();
+    }
+
 }
 
 

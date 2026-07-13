@@ -11,6 +11,9 @@ import { ExcelHelper } from '../utils/ExcelHelper';
 import { JsonHelper } from '../utils/JsonHelper';
 import { ProductInfoPage } from '../pages/ProductInfoPage';
 import { CartPage } from '../pages/CartPage';
+import {CheckOutYourInfoPage} from '../pages/CheckOutYourInfoPage';
+import {CheckoutOverviewPage} from '../pages/CheckoutOverviewPage'
+
 
 //define types for page fixtures:
 type pageFixtures={
@@ -20,6 +23,8 @@ type pageFixtures={
     productPage:ProductPage,
     productInfoPage: ProductInfoPage,
     cartPage:CartPage,
+    checkOutYourInfoPage:CheckOutYourInfoPage,
+    checkoutOverviewPage:CheckoutOverviewPage,
    testData:Record<string,string>[]
 };
 
@@ -59,6 +64,17 @@ type pageFixtures={
         await use(cartPage);
     },
     
+    checkOutYourInfoPage : async({ page }, use)=>{
+        let checkOutYourInfoPage=new CheckOutYourInfoPage(page);
+        await use(checkOutYourInfoPage);
+    },
+
+    checkoutOverviewPage : async({ page }, use)=>{
+        let checkoutOverviewPage=new CheckoutOverviewPage(page);
+        await use(checkoutOverviewPage);
+    },    
+    
+
 testData:async({},use)=>{
     let testData=CsvHelper.readCsv('src/data/loginData.csv');
     await use(testData);
