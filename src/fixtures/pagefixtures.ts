@@ -13,7 +13,7 @@ import { ProductInfoPage } from '../pages/ProductInfoPage';
 import { CartPage } from '../pages/CartPage';
 import {CheckOutYourInfoPage} from '../pages/CheckOutYourInfoPage';
 import {CheckoutOverviewPage} from '../pages/CheckoutOverviewPage'
-
+import{CheckoutCompletePage} from '../pages/CheckoutCompletePage'
 
 //define types for page fixtures:
 type pageFixtures={
@@ -25,6 +25,7 @@ type pageFixtures={
     cartPage:CartPage,
     checkOutYourInfoPage:CheckOutYourInfoPage,
     checkoutOverviewPage:CheckoutOverviewPage,
+    checkoutCompletePage:CheckoutCompletePage,
    testData:Record<string,string>[]
 };
 
@@ -74,6 +75,10 @@ type pageFixtures={
         await use(checkoutOverviewPage);
     },    
     
+      checkoutCompletePage : async({ page }, use)=>{
+        let checkoutCompletePage=new CheckoutCompletePage(page);
+        await use(checkoutCompletePage);
+    }, 
 
 testData:async({},use)=>{
     let testData=CsvHelper.readCsv('src/data/loginData.csv');

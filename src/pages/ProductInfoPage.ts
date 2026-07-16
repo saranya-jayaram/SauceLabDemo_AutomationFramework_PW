@@ -26,8 +26,5 @@ export class ProductInfoPage extends BasePage {
         const productcart=this.page.locator('[data-test="inventory-item"]',{has:this.page.getByText(title)});
         return await productcart.getByRole('button').textContent();
         }
-
-        
-
-
 }
+
